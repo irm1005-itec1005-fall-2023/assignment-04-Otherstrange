@@ -54,3 +54,12 @@ main {
   white-space: nowrap;
   border-width: 0;
 }
+
+#app {
+  display:flex;
+  flex-direction: column;
+  background-color: red;
+  padding:5rem;
+  align-items:center;
+  border-radius:1rem;
+}
