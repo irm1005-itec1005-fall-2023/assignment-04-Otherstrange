@@ -160,7 +160,7 @@ function currentMood(event){
   } else if (todoArray.length === 0) {
     moodImage.src = "images/3165-steambored.png";
     return;
-  } else if (todoArray.length <= 5) {
+  } else if (todoArray.length <= 4) {
     moodImage.src = "images/3194-steamhappy.png";
     return;
   } else {
