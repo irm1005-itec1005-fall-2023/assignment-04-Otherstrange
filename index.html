@@ -42,14 +42,29 @@
 
   <main>
     <div id="app">
-      <h1>To Do:</h1>
+      <div class="microheader">
+        <h1>To Do:</h1>
 
-      <form class="todo-form">
-        <input type="text" id="todo-input" name= "todo-input" placeholder="Add a new to do..." required/>
-        <button type="submit" id="todo-submit">Add</button>
-      </form>
+        <section class="currentmood">
+          <h2>Current mood:</h2>
 
+          <img src="images/3165-steambored.png" id="moodimage" alt="Picture of a very expressive emoji" />
+        </section>
+      </div>
+
+        <form class="todo-form" id="todo-form">
+          <input type="text" id="todo-input" name= "todo-input" placeholder="Add a new to do..." required/>
+
+          <button type="submit" class="todo-submit">Add</button>
+        </form>
       
+        <section class="todo-list">
+          <h2>The stuff ya gotta do:</h2>
+
+          <ul class="visual-todo-list" id="visual-todo-list"></ul>
+
+          <p id="completedtodos">You've completed NO TASKS SO FAR and have NOT MADE A SINGLE TASK TO DO. GET TO WORK.</p>
+        </section>
     </div>
   </main>
 
