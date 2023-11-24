@@ -21,7 +21,7 @@
 
   /* Body configuration */
   --body-default-colour: var(--colour-cello);
-  --body-background-colour: var(--colour-peppermint);
+  --body-background-colour: #FDF0D5;
 }
 
 /*
@@ -58,20 +58,21 @@ main {
 #app {
   display:flex;
   flex-direction: column;
-  background-color: red;
+  background-color: #669BBC;
   padding:5rem;
-  align-items:center;
+  align-items:flex-start;
   border-radius:1rem;
+  width:50rem;
+  margin:5rem 0 5rem 0;
 }
 
 .microheader {
   display:flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content:space-between; 
   align-items:center;
   width:100%;
   margin-bottom:2rem;
-
 }
 
 .currentmood {
@@ -80,11 +81,43 @@ main {
   align-items:center;
   background-color: white;
   border-radius:1rem;
-  width:50%;
-  padding:2rem;
+  padding:1rem 2rem 2rem 2rem;
+  width:15rem;
   border: .3rem solid grey;
+  position:fixed;
 }
 
 .currentmood h2 {
   text-align:center;
+  padding-bottom:1rem;
 }
+
+.visual-todo-list li {
+  display:flex;
+  flex-direction: row;
+  margin: 10px 0px;
+  padding: 20px 10px 20px 10px;
+  border-radius: .5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  align-items:center;
+  background-color: #003049;
+  color:white;
+  list-style:none;
+  justify-content:space-between;
+}
+
+.visual-todo-list li button { 
+  display:flex;
+  flex-direction: row;
+  background-color: #669BBC;
+  border-radius: .5rem;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  align-items:flex-end;
+}
+
