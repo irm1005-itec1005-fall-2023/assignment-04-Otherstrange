@@ -60,35 +60,69 @@ main {
   flex-direction: column;
   background-color: #669BBC;
   padding:5rem;
-  align-items:flex-start;
   border-radius:1rem;
   width:50rem;
   margin:5rem 0 5rem 0;
 }
 
-.microheader {
-  display:flex;
-  flex-direction: row;
-  justify-content:space-between; 
-  align-items:center;
-  width:100%;
-  margin-bottom:2rem;
+h1 {
+  font-size:0px;
 }
 
 .currentmood {
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  text-align:center;
+  justify-content:space-evenly;
+  flex-grow:1;
+}
+
+.currentmood p {
+  font-size:1.4rem;
+  width:20rem;
+  margin:2rem 0rem 2rem 2rem;
+}
+
+.currentmood h2 {
+  padding-bottom:1rem;
+}
+
+.moodimg {
   display:flex;
   flex-direction: column;
   align-items:center;
   background-color: white;
   border-radius:1rem;
   padding:1rem 2rem 2rem 2rem;
+  border: .3rem solid #003049;
   width:15rem;
-  border: .3rem solid grey;
 }
 
-.currentmood h2 {
-  text-align:center;
-  padding-bottom:1rem;
+.todo-form {
+  display:flex;
+  justify-content:center;
+  border-radius:1rem;
+  margin:.5rem 0rem .5rem 0rem;
+}
+
+.todo-form button {
+  background-color: #003049;
+  border-radius: .5rem;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin:1rem;
+  padding:0rem .5rem 0rem .5rem
+}
+
+.todo-form input {
+  border-radius: .5rem;
+  border: none;
+  font-size: 1.2rem;
+  padding:.5rem;
+  margin:1rem;
 }
 
 .visual-todo-list li {
@@ -117,6 +151,5 @@ main {
   padding: 10px 20px;
   font-size: 1.2rem;
   cursor: pointer;
-  align-items:flex-end;
 }
 
