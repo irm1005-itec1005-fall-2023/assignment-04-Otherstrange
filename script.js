@@ -97,7 +97,7 @@ function renderTodos() {
 }
 
 function remainingTodos() {
-  let completedPara = document.getElementById("completedtodos");
+  let completedPara = document.getElementById("completedtodos-p");
 
   let completedText = "";
 
