@@ -74,12 +74,22 @@ function renderTodos() {
   for (i=0; i < todoArray.length; i++) {
     let listItem = document.createElement("li");
     
-    listItem.textContent = todoArray[i];
+    // listItem.textContent = todoArray[i];
+
+    let todoPara = document.createElement("p");
+
+    todoPara.textContent = todoArray[i];
 
     let deleteButton = document.createElement("button");
 
     let completeButton = document.createElement("button");
 
+    let todoTextDiv = document.createElement("div");
+
+    let todoButtonsDiv = document.createElement("div");
+
+    todoTextDiv.appendChild(todoPara); 
+    
     deleteButton.textContent = "Delete";
 
     completeButton.textContent = "Complete";
@@ -88,9 +98,15 @@ function renderTodos() {
 
     completeButton.dataset.complete = i;
 
-    listItem.appendChild(deleteButton);
+    todoButtonsDiv.classList.add("anotherclass");
 
-    listItem.appendChild(completeButton);
+    todoButtonsDiv.appendChild(deleteButton);
+
+    todoButtonsDiv.appendChild(completeButton);
+
+    listItem.appendChild(todoTextDiv);
+
+    listItem.appendChild(todoButtonsDiv);
 
     todoList.appendChild(listItem);
   }

@@ -75,7 +75,6 @@ h1 {
   align-items:center;
   text-align:center;
   justify-content:space-evenly;
-  flex-grow:1;
 }
 
 .currentmood p {
@@ -99,7 +98,7 @@ h1 {
   width:15rem;
 }
 
-.todo-form {
+.todo-form-class {
   display:flex;
   justify-content:center;
   border-radius:.5rem;
@@ -107,27 +106,45 @@ h1 {
   padding-left:0px;
 }
 
-.todo-form button {
+.todo-form-class button {
   background-color: #66c0f4;
   border-radius: .5rem;
   border: none;
   color: #171a21 ;
   font-size: 1.2rem;
   cursor: pointer;
-  margin:1rem;
-  padding:0rem .5rem 0rem .5rem
+  margin:1rem 0rem 1rem 1rem;
+  padding:0rem .5rem 0rem .5rem;
+  transition: all 0.3s ease-in-out;
+  width:5rem;
+  font-weight: bold;
 }
 
-.todo-form input {
+.todo-form-class button:hover {
+  background-color: #c7d5e0;
+  color: #1b2838;
+}
+
+.todo-form-class button:active {
+  background-color: #a9b3bb;
+  color: #1b2838;
+  position: relative;
+  top: 2px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  transition: 0.1s ease-in-out;
+}
+
+.todo-form-class input {
   border-radius: .5rem;
   border: none;
   font-size: 1.2rem;
   padding:.5rem;
-  margin:1rem;
+  margin:1rem 0rem 1rem 0rem;
   background: #c7d5e0;
+  flex-grow:1;
 }
 
-.visual-todo-list li {
+.visual-todo-list-class li {
   display:flex;
   flex-direction: row;
   margin: 10px 0px;
@@ -140,9 +157,10 @@ h1 {
   background-color: #1b2838 ;
   color:#c7d5e0 ;
   justify-content:space-between;
+  word-break:break-word;
 }
 
-.visual-todo-list li button { 
+.visual-todo-list-class li button { 
   display:flex;
   flex-direction: row;
   background-color: #66c0f4;
@@ -152,5 +170,30 @@ h1 {
   padding: 10px 20px;
   font-size: 1.2rem;
   cursor: pointer;
+  word-break:normal;
+  transition: all 0.3s ease-in-out;
 }
 
+.visual-todo-list-class li button:hover {
+  background-color: #c7d5e0;
+  color: #1b2838;
+}
+
+ul.visual-todo-list-class {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+.anotherclass {
+  display:flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:none;
+  gap:1rem;
+}
+
+.visual-todo-list-class p {
+  margin-right:10px;
+}
