@@ -98,6 +98,11 @@ h1 {
   width:15rem;
 }
 
+.moodimg img {
+  width:108px;
+  height:108px;
+}
+
 .todo-form-class {
   display:flex;
   justify-content:center;
@@ -196,4 +201,48 @@ ul.visual-todo-list-class {
 
 .visual-todo-list-class p {
   margin-right:10px;
+}
+
+.todo-list h2 {
+  border-bottom: 1px solid #c7d5e0;
+  padding-bottom:10px;
+}
+
+/* 
+I asked ChatGPT to make this css work well in mobile and it made this. 
+Mostly because I really didn't wanna tinker with this anymore.
+I made some changes to the code it provided though.
+*/
+@media screen and (max-width: 600px) {
+  #app {
+    width: 100%;
+    padding: 3rem;
+  }
+
+  .currentmood {
+    flex-direction: column;
+  }
+
+  .currentmood p {
+    width: 100%;
+    margin: 2rem 0;
+  }
+
+  .moodimg {
+    width: 100%;
+    margin-top: 2rem;
+  }
+
+  .todo-form-class input {
+    margin: 1rem 0;
+  }
+
+  .visual-todo-list-class li {
+    flex-direction: column;
+  }
+
+  .visual-todo-list-class li button {
+    width: 100%;
+    margin-top: 10px;
+  }
 }
