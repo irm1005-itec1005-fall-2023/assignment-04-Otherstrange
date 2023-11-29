@@ -220,6 +220,14 @@ ul.visual-completed-todo-list-class {
 
 }
 
+.visual-todo-list-class li.completedtemp {
+  background-color:green;
+}
+
+.visual-todo-list-class li.deletedtemp {
+  background-color:red;
+}
+
 /* 
 I asked ChatGPT to make this css work well in mobile and it made this. 
 Mostly because I really didn't wanna tinker with this anymore.

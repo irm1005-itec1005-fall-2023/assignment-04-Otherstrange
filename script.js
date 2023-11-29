@@ -38,7 +38,13 @@ function handleSubmit(event) {
   
   event.preventDefault();
 
-  todoArray.push(todoInput.value);
+  let tempvar = {
+    todo: todoInput.value,
+    deleted: false,
+    completed: false,
+  }
+
+  todoArray.push(tempvar);
 
   todoForm.reset();
 
@@ -70,24 +76,19 @@ function todoListClickHandler(event) {
     if (event.target.dataset.delete) {
       let deletedTodo = event.target.dataset.delete;
 
-      let deletedcompletedentry = {
-        todo: todoArray[deletedTodo],
-        deleted: true,
-      }
-      deletedcompletedArray.push(deletedcompletedentry);
+      todoArray[deletedTodo].deleted = true;
 
-      todoArray.splice(deletedTodo, 1);
+      deletedcompletedArray.push(deletedTodo);
+      // todoArray.splice(deletedTodo, 1);
     }
     if (event.target.dataset.complete) {
       let completedTodo = event.target.dataset.complete;
 
-      let deletedcompletedentry = {
-        todo: todoArray[completedTodo],
-        deleted: false,
-      }
-      deletedcompletedArray.push(deletedcompletedentry);
+      todoArray[completedTodo].completed = true;
 
-      todoArray.splice(completedTodo, 1);
+      deletedcompletedArray.push(completedTodo);
+
+      // todoArray.splice(completedTodo, 1);
 
       totalCompleted++;
     }
@@ -107,7 +108,7 @@ function renderTodos() {
 
     let todoPara = document.createElement("p");
 
-    todoPara.textContent = todoArray[i];
+    todoPara.textContent = todoArray[i].todo;
 
     let deleteButton = document.createElement("button");
 
@@ -116,8 +117,6 @@ function renderTodos() {
     let todoTextDiv = document.createElement("div");
 
     let todoButtonsDiv = document.createElement("div");
-
-    todoTextDiv.appendChild(todoPara); 
     
     deleteButton.textContent = "Delete";
 
@@ -128,6 +127,16 @@ function renderTodos() {
     completeButton.dataset.complete = i;
 
     todoButtonsDiv.classList.add("anotherclass");
+
+    if (todoArray[i].deleted === true) {
+      listItem.classList.add("deletedtemp");
+    }
+
+    if (todoArray[i].completed === true) {
+      listItem.classList.add("completedtemp");
+    }
+
+    todoTextDiv.appendChild(todoPara); 
 
     todoButtonsDiv.appendChild(deleteButton);
 
