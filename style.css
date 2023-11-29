@@ -149,7 +149,8 @@ h1 {
   flex-grow:1;
 }
 
-.visual-todo-list-class li {
+.visual-todo-list-class li,
+.visual-completed-todo-list-class li {
   display:flex;
   flex-direction: row;
   margin: 10px 0px;
@@ -165,7 +166,8 @@ h1 {
   word-break:break-word;
 }
 
-.visual-todo-list-class li button { 
+.visual-todo-list-class li button,
+.visual-completed-todo-list-class li button { 
   display:flex;
   flex-direction: row;
   background-color: #66c0f4;
@@ -179,12 +181,14 @@ h1 {
   transition: all 0.3s ease-in-out;
 }
 
-.visual-todo-list-class li button:hover {
+.visual-todo-list-class li button:hover,
+.visual-completed-todo-list-class li button:hover {
   background-color: #c7d5e0;
   color: #1b2838;
 }
 
-ul.visual-todo-list-class {
+ul.visual-todo-list-class,
+ul.visual-completed-todo-list-class {
   list-style-type: none;
   padding: 0px;
   margin: 0px;
@@ -199,13 +203,21 @@ ul.visual-todo-list-class {
   gap:1rem;
 }
 
-.visual-todo-list-class p {
+.visual-todo-list-class p,
+.visual-completed-todo-list-class p{
   margin-right:10px;
 }
 
 .todo-list h2 {
   border-bottom: 1px solid #c7d5e0;
   padding-bottom:10px;
+}
+
+.completed-visual-todo-class h2 {
+  border-bottom: 1px solid #c7d5e0;
+  padding-bottom:10px;
+  padding-top:10px;
+
 }
 
 /* 

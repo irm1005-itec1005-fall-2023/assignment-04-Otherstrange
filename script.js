@@ -13,11 +13,14 @@
 const appID = "app";
 const headingText = "To do. To done. ✅";
 let todoArray = [];
+let deletedcompletedArray = [];
 let todoForm = document.getElementById("todo-form");
 let todoList = document.getElementById("visual-todo-list");
 let todoInput = document.getElementById("todo-input");
 let totalCompleted = 0;
 let totalCreated = 0;
+let completedordeletedList = document.getElementById("visual-completed-todo-list");
+
 // DOM Elements
 let appContainer = document.getElementById(appID);
 
@@ -46,6 +49,20 @@ function handleSubmit(event) {
   totalCreated++;
 }
 
+completedordeletedList.addEventListener("click", completedordeletedListClickHandler);
+
+function completedordeletedListClickHandler(event) {
+    if (event.target.dataset.trash) {
+      let deletedcompletedTodo = event.target.dataset.trash;
+  
+      deletedcompletedArray.splice(deletedcompletedTodo, 1);
+    }
+  
+    renderTodos();
+    remainingTodos();
+    currentMood(event);
+}
+
 todoList.addEventListener("click", todoListClickHandler);
 
 function todoListClickHandler(event) {
@@ -53,10 +70,22 @@ function todoListClickHandler(event) {
     if (event.target.dataset.delete) {
       let deletedTodo = event.target.dataset.delete;
 
+      let deletedcompletedentry = {
+        todo: todoArray[deletedTodo],
+        deleted: true,
+      }
+      deletedcompletedArray.push(deletedcompletedentry);
+
       todoArray.splice(deletedTodo, 1);
     }
     if (event.target.dataset.complete) {
       let completedTodo = event.target.dataset.complete;
+
+      let deletedcompletedentry = {
+        todo: todoArray[completedTodo],
+        deleted: false,
+      }
+      deletedcompletedArray.push(deletedcompletedentry);
 
       todoArray.splice(completedTodo, 1);
 
@@ -109,6 +138,33 @@ function renderTodos() {
     listItem.appendChild(todoButtonsDiv);
 
     todoList.appendChild(listItem);
+  }
+
+  completedordeletedList.innerHTML = "";
+
+  for (i=0; i < deletedcompletedArray.length; i++) {
+    let listItem = document.createElement("li");
+
+    let completedordeletedPara = document.createElement("p");
+
+    completedordeletedPara.textContent = deletedcompletedArray[i].todo;
+
+    let completedordeletedButtonsDiv = document.createElement("div");
+
+    let completedordeletedButton = document.createElement("button");
+
+    completedordeletedButton.textContent = "Delete";
+
+    completedordeletedButton.dataset.trash = i;
+
+    completedordeletedButtonsDiv.appendChild(completedordeletedButton);
+
+    listItem.appendChild(completedordeletedPara);
+
+    listItem.appendChild(completedordeletedButtonsDiv);
+
+    completedordeletedList.appendChild(listItem);
+  
   }
 }
 
