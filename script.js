@@ -40,23 +40,24 @@ function handleSubmit(event) {
 
   event.preventDefault();
 
-  if (todoInput.value === "" && benson === 1) {
-    let completedPara = document.getElementById("completedtodos-p");
-    let completedPara2 = document.getElementById("completedtodos-p2");
-    let moodImage = document.getElementById("moodimage");
-    benson = 1;
-    completedPara.textContent = "When was the last time you did nothing? Never, huh?";
-    completedPara2.textContent = "THEN WHY ARE YOU ADDING NOTHING TO YOUR TODO LIST?"
-    moodImage.src = "images/bensonemote.png";
-    moodImage.alt = "Benson from Regular Show";
+  if (todoInput.value === "") {
+    if (benson === 0) {
+      let completedPara = document.getElementById("completedtodos-p");
+      let completedPara2 = document.getElementById("completedtodos-p2");
+      let moodImage = document.getElementById("moodimage");
+      benson = 1;
+      completedPara.textContent = "When was the last time you did nothing? Never, huh?";
+      completedPara2.textContent = "THEN WHY ARE YOU ADDING NOTHING TO YOUR TODO LIST?"
+      moodImage.src = "images/bensonemote.png";
+      moodImage.alt = "Benson from Regular Show";
 
-    // Obviously ChatGPT wrote this timeout function for me. Thanks bro. Apparently there isn't a wait function in JS. Why?
-    setTimeout(() => {
-      benson = 0;
-      currentMood(event);
-      remainingTodos();
-    }, 4000);
-
+      // Obviously ChatGPT wrote this timeout function for me. Thanks bro. Apparently there isn't a wait function in JS. Why?
+      setTimeout(() => {
+        benson = 0;
+        currentMood(event);
+        remainingTodos();
+      }, 4000);
+    }
   } else {
     let tempvar = {
       todo: todoInput.value,
