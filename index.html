@@ -6,22 +6,22 @@
   <title>Assignment 04 - Finishing a Todo List App</title>
 
   <!-- Set the charset we're using to UTF-8 -->
-  <meta charset="utf-8" />
+  <meta charset="utf-8" >
 
   <!-- Set the screens default zoom / scale to 1 -->
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" >
 
   <!-- Specifies the document mode for Internet Explorer -->
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" >
 
   <!-- Set the CSS Reset File -->
-  <link rel="stylesheet" href="./reset.css" />
+  <link rel="stylesheet" href="./reset.css" >
 
   <!-- Set the main stylesheet -->
-  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./style.css" >
 
   <!-- Set the Favicon  -->
-  <link rel="icon" href="./images/favicon/rocket.svg" type="image/svg+xml" />
+  <link rel="icon" href="./images/favicon/rocket.svg" type="image/svg+xml" >
 </head>
 <body>
 
@@ -41,9 +41,43 @@
   -->
 
   <main>
-    <div id="app"></div>
+    <div id="app">
+      <h1>To Do List</h1>
+
+        <section class="currentmood">
+          <div class="moodimg">
+            <h2>Current mood</h2>
+
+            <img src="images/3165-steambored.png" id="moodimage" alt="Picture of a green sleeping emoji" >
+          </div>
+
+          <div class="moodtext">
+            <p id="completedtodos-p">You've completed NO TASKS SO FAR and have NOT MADE A SINGLE TASK TO DO.</p>
+
+            <p id="completedtodos-p2">GET TO WORK.</p>
+          </div>
+        </section>
+
+        <form class="todo-form-class" id="todo-form">
+          <input type="text" id="todo-input" name= "todo-input" placeholder="Add a new to do...">
+
+          <button type="submit" class="todo-submit">Add</button>
+        </form>
+      
+        <section class="todo-list">
+          <h2>The stuff ya gotta do:</h2>
+
+          <ul class="visual-todo-list-class" id="visual-todo-list">
+            
+          </ul>
+        </section>
+    </div>
   </main>
 
+
+  <footer>
+    
+  </footer>
   <!-- Add JavaScript File -->
   <script src="./script.js"></script>
 

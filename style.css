@@ -21,7 +21,7 @@
 
   /* Body configuration */
   --body-default-colour: var(--colour-cello);
-  --body-background-colour: var(--colour-peppermint);
+  --body-background-colour: #171a21;
 }
 
 /*
@@ -29,7 +29,7 @@
 */
 body {
   font-family: Arial, Helvetica, sans-serif;
-  color: var(--body-default-colour);
+  color: #c7d5e0;
   background-color: var(--body-background-colour);
 }
 
@@ -53,4 +53,233 @@ main {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+#app {
+  display:flex;
+  flex-direction: column;
+  background-color: #2a475e ;
+  padding:5rem 3rem 5rem 3rem;
+  border-radius:.5rem;
+  width:50rem;
+  margin:5rem 0 5rem 0;
+}
+
+h1 {
+  font-size:0px;
+}
+
+.currentmood {
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  text-align:center;
+  justify-content:space-evenly;
+}
+
+.currentmood p {
+  font-size:1.4rem;
+  width:20rem;
+  margin:2rem 0rem 2rem 2rem;
+}
+
+.currentmood h2 {
+  padding-bottom:1rem;
+}
+
+.moodimg {
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  background-color: #c7d5e0;
+  color: #1b2838;
+  border-radius:.5rem;
+  padding:1rem 2rem 2rem 2rem;
+  width:15rem;
+}
+
+.moodimg img {
+  width:108px;
+  height:108px;
+}
+
+.todo-form-class {
+  display:flex;
+  justify-content:center;
+  border-radius:.5rem;
+  margin:.5rem 0rem .5rem 0rem;
+  padding-left:0px;
+}
+
+.todo-form-class button {
+  background-color: #66c0f4;
+  border-radius: .5rem;
+  border: none;
+  color: #171a21 ;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin:1rem 0rem 1rem 1rem;
+  padding:0rem .5rem 0rem .5rem;
+  transition: all 0.3s ease-in-out;
+  width:5rem;
+  font-weight: bold;
+}
+
+.todo-form-class button:hover {
+  background-color: #c7d5e0;
+  color: #1b2838;
+}
+
+.todo-form-class button:active {
+  background-color: #a9b3bb;
+  color: #1b2838;
+  position: relative;
+  top: 2px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  transition: 0.1s ease-in-out;
+}
+
+.todo-form-class input {
+  border-radius: .5rem;
+  border: none;
+  font-size: 1.2rem;
+  padding:.5rem;
+  margin:1rem 0rem 1rem 0rem;
+  background: #c7d5e0;
+  flex-grow:1;
+}
+
+.visual-todo-list-class li {
+  display:flex;
+  flex-direction: row;
+  margin: 10px 0px;
+  padding: 20px 10px 20px 10px;
+  border-radius: .5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  align-items:center;
+  background-color: #1b2838 ;
+  color:#c7d5e0 ;
+  justify-content:space-between;
+}
+
+.visual-todo-list-class li button { 
+  display:flex;
+  flex-direction: row;
+  background-color: #66c0f4;
+  border-radius: .5rem;
+  border: none;
+  color: #1b2838 ;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  word-break:normal;
+  transition: all 0.2s ease-in-out;
+}
+
+.visual-todo-list-class li button:hover {
+  background-color: #c7d5e0;
+  color: #1b2838;
+}
+
+ul.visual-todo-list-class {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+.anotherclass {
+  display:flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:nowrap;
+  gap:1rem;
+}
+
+.visual-todo-list-class p{
+  margin-right:10px;
+}
+
+.todo-list h2 {
+  border-bottom: 1px solid #c7d5e0;
+  padding-bottom:10px;
+}
+
+.completed-visual-todo-class h2 {
+  border-bottom: 1px solid #c7d5e0;
+  padding-bottom:10px;
+  padding-top:10px;
+
+}
+
+.visual-todo-list-class li.completedtemp {
+  background-color:rgb(65, 131, 65);
+}
+
+.visual-todo-list-class li.completedtemp p,
+.visual-todo-list-class li.deletedtemp p {
+  text-decoration:line-through;
+  text-decoration-thickness:3px;
+  color:#b1bcc5;
+}
+
+.visual-todo-list-class li.deletedtemp {
+  background-color:rgb(184, 74, 74);
+}
+
+.visual-todo-list-class li.deletedtemp button {
+  background-color:rgb(184, 74, 74);
+}
+
+.visual-todo-list-class li.completedtemp button {
+  background-color:rgb(65, 131, 65);
+}
+
+.visual-todo-list-class li.completedtemp button:hover,
+.visual-todo-list-class li.deletedtemp button:hover {
+  transition: all 0.1s ease-in-out;
+  color:#c7d5e0;
+}
+
+/* are you happy now, Mr. TA?
+
+/* 
+I asked ChatGPT to make this css work well in mobile and it made this. 
+Mostly because I really didn't wanna tinker with this anymore.
+I made some changes to the code it provided though.
+*/
+@media screen and (max-width: 600px) {
+  #app {
+    width: 100%;
+    padding: 3rem;
+  }
+
+  .currentmood {
+    flex-direction: column;
+  }
+
+  .currentmood p {
+    width: 100%;
+    margin: 2rem 0;
+  }
+
+  .moodimg {
+    width: 100%;
+    margin-top: 2rem;
+  }
+
+  .todo-form-class input {
+    margin: 1rem 0;
+  }
+
+  .visual-todo-list-class li {
+    flex-direction: column;
+  }
+
+  .visual-todo-list-class li button {
+    width: 100%;
+    margin-top: 10px;
+  }
 }
