@@ -41,7 +41,9 @@ function handleSubmit(event) {
   event.preventDefault();
 
   if (todoInput.value === "") {
+    console.log("nothing entered");
     if (benson === 0) {
+      console.log("benson mode activated")
       let completedPara = document.getElementById("completedtodos-p");
       let completedPara2 = document.getElementById("completedtodos-p2");
       let moodImage = document.getElementById("moodimage");
@@ -59,6 +61,7 @@ function handleSubmit(event) {
       }, 4000);
     }
   } else {
+    console.log("something entered");
     let tempvar = {
       todo: todoInput.value,
       deleted: false,
