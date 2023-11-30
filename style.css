@@ -175,7 +175,7 @@ h1 {
   font-size: 1.2rem;
   cursor: pointer;
   word-break:normal;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .visual-todo-list-class li button:hover {
@@ -235,6 +235,12 @@ ul.visual-todo-list-class {
 
 .visual-todo-list-class li.completedtemp button {
   background-color:rgb(65, 131, 65);
+}
+
+.visual-todo-list-class li.completedtemp button:hover,
+.visual-todo-list-class li.deletedtemp button:hover {
+  transition: all 0.1s ease-in-out;
+  color:#c7d5e0;
 }
 
 /* are you happy now, Mr. TA?

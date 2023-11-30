@@ -21,6 +21,7 @@ let todoInput = document.getElementById("todo-input");
 let totalCompleted = 0;
 let totalCreated = 0;
 let currentTodos = 0;
+let benson = 0;
 
 // DOM Elements
 let appContainer = document.getElementById(appID);
@@ -36,25 +37,44 @@ todoList.addEventListener("mouseover", updateMood);
 todoList.addEventListener("mouseout", currentMood);
 
 function handleSubmit(event) {
-  
+
   event.preventDefault();
 
-  let tempvar = {
-    todo: todoInput.value,
-    deleted: false,
-    completed: false,
+  if (todoInput.value === "") {
+    let completedPara = document.getElementById("completedtodos-p");
+    let completedPara2 = document.getElementById("completedtodos-p2");
+    let moodImage = document.getElementById("moodimage");
+    benson = 1;
+    completedPara.textContent = "When was the last time you did nothing? Never, huh?";
+    completedPara2.textContent = "THEN WHY ARE YOU ADDING NOTHING TO YOUR TODO LIST?"
+    moodImage.src = "images/bensonemote.png";
+    moodImage.alt = "Benson from Regular Show";
+
+    // Obviously ChatGPT wrote this timeout function for me. Thanks bro. Apparently there isn't a wait function in JS. Why?
+    setTimeout(() => {
+      benson = 0;
+      currentMood(event);
+      remainingTodos();
+    }, 4000);
+
+  } else {
+    let tempvar = {
+      todo: todoInput.value,
+      deleted: false,
+      completed: false,
+    }
+
+    todoArray.push(tempvar);
+
+    todoForm.reset();
+
+    totalCreated++;
+    currentTodos++;
+
+    renderTodos();
+    remainingTodos();
+    currentMood(event);
   }
-
-  todoArray.push(tempvar);
-
-  todoForm.reset();
-
-  totalCreated++;
-  currentTodos++;
-
-  renderTodos();
-  remainingTodos();
-  currentMood(event);
 }
 
 function completedordeletedListClickHandler(event) {
@@ -157,6 +177,7 @@ function renderTodos() {
 
 function remainingTodos() {
   let completedPara = document.getElementById("completedtodos-p");
+  let completedPara2 = document.getElementById("completedtodos-p2");
 
   let completedText = "";
 
@@ -173,11 +194,11 @@ function remainingTodos() {
   }
 
   if (currentTodos === 0) {
-    remainingText = "NO TASKS LEFT";
+    remainingText = "NO TASKS LEFT.";
   } else if (currentTodos === 1) {
-    remainingText = "1 TASK REMAINING";
+    remainingText = "1 TASK REMAINING.";
   } else {
-    remainingText = currentTodos + " TASKS REMAINING";
+    remainingText = currentTodos + " TASKS REMAINING.";
   }
 
   if (totalCreated === 0) {
@@ -188,12 +209,17 @@ function remainingTodos() {
     createdText = totalCreated + " TASKS";
   }
 
-  if (totalCompleted === 0 && currentTodos === 0 && totalCreated > 0) {
-    completedPara.textContent = ("Despite creating " + createdText + " so far, you've completed NONE OF THEM. QUIT HITTING THAT DELETE BUTTON AND GET TO WORK!");
-  } else if (totalCompleted > 0 && currentTodos === 0) {
-    completedPara.textContent = ("You've completed " + completedText + " and have " + remainingText + ". GOOD SHIT!")
-  } else {
-    completedPara.textContent = ("You've completed " + completedText + " and have " + remainingText + ". GET TO WORK!")
+  if (benson === 0) {
+    if (totalCompleted === 0 && currentTodos === 0 && totalCreated > 0) {
+      completedPara.textContent = ("Despite creating " + createdText + " so far, you've completed NONE OF THEM. QUIT HITTING THAT DELETE BUTTON AND GET TO WORK!");
+      completedPara2.textContent = ("");
+    } else if (totalCompleted > 0 && currentTodos === 0) {
+      completedPara.textContent = ("You've completed " + completedText + " and have " + remainingText);
+      completedPara2.textContent = ("GOOD SHIT!");
+    } else {
+      completedPara.textContent = ("You've completed " + completedText + " and have " + remainingText);
+      completedPara2.textContent = ("GET TO WORK!");
+    }
   }
   // The above if statement is cool. It was originally a bunch of if statements, and is now... a bunch of if statements. Looks neat though.
 }
@@ -201,33 +227,45 @@ function remainingTodos() {
 function updateMood(event) {
   let moodImage = document.getElementById("moodimage");
 
-  if (event.target.dataset.delete) {
-    moodImage.src = "images/9875-steamfacepalm.png";
-  }
-  if (event.target.dataset.complete) {
-    moodImage.src = "images/3194-steamhappy.png";
-  }
-  if (event.target.dataset.trash) {
-    moodImage.src = "images/5a2411fc6003f508dd5d5b37.png";
+  if (benson === 0) {
+    if (event.target.dataset.delete) {
+      moodImage.src = "images/9875-steamfacepalm.png";
+      moodImage.alt = "Image of a lime green facepalming emoji";
+    }
+    if (event.target.dataset.complete) {
+      moodImage.src = "images/3194-steamhappy.png";
+      moodImage.alt = "Image of a yellow happy emoji";
+    }
+    if (event.target.dataset.trash) {
+      moodImage.src = "images/5a2411fc6003f508dd5d5b37.png";
+      moodImage.alt = "Image of a skull emoji";
+    }
   }
 }
 
 function currentMood(event){
   let moodImage = document.getElementById("moodimage");
 
-  if (totalCompleted === 0 && currentTodos === 0 && totalCreated > 0) {
-    moodImage.src ="images/5524-steammocking.png";
-    return;
-  } else if (currentTodos === 0) {
-    moodImage.src = "images/3165-steambored.png";
-    return;
-  } else if (currentTodos <= 4) {
-    moodImage.src = "images/3194-steamhappy.png";
-    return;
-  } else if (currentTodos <= 10) {
-    moodImage.src ="images/7490-steamsad.png";
-  } else {
-    moodImage.src="images/5a2411fc6003f508dd5d5b37.png";
+  if (benson === 0) {
+    if (totalCompleted === 0 && currentTodos === 0 && totalCreated > 0) {
+      moodImage.src ="images/5524-steammocking.png";
+      moodImage.alt = "Image of a green mocking emoji";
+      return;
+    } else if (currentTodos === 0) {
+      moodImage.src = "images/3165-steambored.png";
+      moodImage.alt = "Image of a green sleeping emoji";
+      return;
+    } else if (currentTodos <= 4) {
+      moodImage.src = "images/3194-steamhappy.png";
+      moodImage.alt = "Image of a yellow happy emoji";
+      return;
+    } else if (currentTodos <= 10) {
+      moodImage.src ="images/7490-steamsad.png";
+      moodImage.alt = "Image of a blue sad emoji";
+    } else {
+      moodImage.src="images/5a2411fc6003f508dd5d5b37.png";
+      moodImage.alt = "Image of a skull emoji";
+    }
   }
 }
 
