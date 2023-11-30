@@ -149,8 +149,7 @@ h1 {
   flex-grow:1;
 }
 
-.visual-todo-list-class li,
-.visual-completed-todo-list-class li {
+.visual-todo-list-class li {
   display:flex;
   flex-direction: row;
   margin: 10px 0px;
@@ -166,8 +165,7 @@ h1 {
   word-break:break-word;
 }
 
-.visual-todo-list-class li button,
-.visual-completed-todo-list-class li button { 
+.visual-todo-list-class li button { 
   display:flex;
   flex-direction: row;
   background-color: #66c0f4;
@@ -181,14 +179,12 @@ h1 {
   transition: all 0.3s ease-in-out;
 }
 
-.visual-todo-list-class li button:hover,
-.visual-completed-todo-list-class li button:hover {
+.visual-todo-list-class li button:hover {
   background-color: #c7d5e0;
   color: #1b2838;
 }
 
-ul.visual-todo-list-class,
-ul.visual-completed-todo-list-class {
+ul.visual-todo-list-class {
   list-style-type: none;
   padding: 0px;
   margin: 0px;
@@ -203,8 +199,7 @@ ul.visual-completed-todo-list-class {
   gap:1rem;
 }
 
-.visual-todo-list-class p,
-.visual-completed-todo-list-class p{
+.visual-todo-list-class p{
   margin-right:10px;
 }
 
@@ -221,12 +216,29 @@ ul.visual-completed-todo-list-class {
 }
 
 .visual-todo-list-class li.completedtemp {
-  background-color:green;
+  background-color:rgb(65, 131, 65);
+}
+
+.visual-todo-list-class li.completedtemp p,
+.visual-todo-list-class li.deletedtemp p {
+  text-decoration:line-through;
+  text-decoration-thickness:3px;
+  color:#b1bcc5;
 }
 
 .visual-todo-list-class li.deletedtemp {
-  background-color:red;
+  background-color:rgb(184, 74, 74);
 }
+
+.visual-todo-list-class li.deletedtemp button {
+  background-color:rgb(184, 74, 74);
+}
+
+.visual-todo-list-class li.completedtemp button {
+  background-color:rgb(65, 131, 65);
+}
+
+/* are you happy now, Mr. TA?
 
 /* 
 I asked ChatGPT to make this css work well in mobile and it made this. 

@@ -12,14 +12,15 @@
 // Constants
 const appID = "app";
 const headingText = "To do. To done. ✅";
-let todoArray = [];
-let deletedcompletedArray = [];
+let todoArray = [
+];
+
 let todoForm = document.getElementById("todo-form");
 let todoList = document.getElementById("visual-todo-list");
 let todoInput = document.getElementById("todo-input");
 let totalCompleted = 0;
 let totalCreated = 0;
-let completedordeletedList = document.getElementById("visual-completed-todo-list");
+let currentTodos = 0;
 
 // DOM Elements
 let appContainer = document.getElementById(appID);
@@ -48,14 +49,13 @@ function handleSubmit(event) {
 
   todoForm.reset();
 
+  totalCreated++;
+  currentTodos++;
+
   renderTodos();
   remainingTodos();
   currentMood(event);
-
-  totalCreated++;
 }
-
-completedordeletedList.addEventListener("click", completedordeletedListClickHandler);
 
 function completedordeletedListClickHandler(event) {
     if (event.target.dataset.trash) {
@@ -77,20 +77,21 @@ function todoListClickHandler(event) {
       let deletedTodo = event.target.dataset.delete;
 
       todoArray[deletedTodo].deleted = true;
-
-      deletedcompletedArray.push(deletedTodo);
-      // todoArray.splice(deletedTodo, 1);
+      currentTodos--;
     }
     if (event.target.dataset.complete) {
       let completedTodo = event.target.dataset.complete;
 
       todoArray[completedTodo].completed = true;
 
-      deletedcompletedArray.push(completedTodo);
-
-      // todoArray.splice(completedTodo, 1);
-
       totalCompleted++;
+      currentTodos--;
+    }
+
+    if (event.target.dataset.trash) {
+      let removeTodo = event.target.dataset.trash;
+  
+      todoArray.splice(removeTodo, 1);
     }
 
     renderTodos();
@@ -103,8 +104,6 @@ function renderTodos() {
 
   for (i=0; i < todoArray.length; i++) {
     let listItem = document.createElement("li");
-    
-    // listItem.textContent = todoArray[i];
 
     let todoPara = document.createElement("p");
 
@@ -112,35 +111,40 @@ function renderTodos() {
 
     let deleteButton = document.createElement("button");
 
+    let removeButton = document.createElement("button");
+
     let completeButton = document.createElement("button");
 
     let todoTextDiv = document.createElement("div");
 
     let todoButtonsDiv = document.createElement("div");
-    
-    deleteButton.textContent = "Delete";
-
-    completeButton.textContent = "Complete";
-
-    deleteButton.dataset.delete = i;
-
-    completeButton.dataset.complete = i;
 
     todoButtonsDiv.classList.add("anotherclass");
 
     if (todoArray[i].deleted === true) {
       listItem.classList.add("deletedtemp");
-    }
+      removeButton.textContent = "Remove";
+      removeButton.dataset.trash = i;
+      todoButtonsDiv.appendChild(removeButton);
+    } 
 
     if (todoArray[i].completed === true) {
       listItem.classList.add("completedtemp");
+      removeButton.textContent = "Remove";
+      removeButton.dataset.trash = i;
+      todoButtonsDiv.appendChild(removeButton);
+    }
+
+    if (todoArray[i].deleted === false && todoArray[i].completed === false) {
+        deleteButton.textContent = "Delete";
+        deleteButton.dataset.delete = i;
+        todoButtonsDiv.appendChild(deleteButton);
+        completeButton.textContent = "Complete";
+        completeButton.dataset.complete = i;
+        todoButtonsDiv.appendChild(completeButton);
     }
 
     todoTextDiv.appendChild(todoPara); 
-
-    todoButtonsDiv.appendChild(deleteButton);
-
-    todoButtonsDiv.appendChild(completeButton);
 
     listItem.appendChild(todoTextDiv);
 
@@ -149,32 +153,6 @@ function renderTodos() {
     todoList.appendChild(listItem);
   }
 
-  completedordeletedList.innerHTML = "";
-
-  for (i=0; i < deletedcompletedArray.length; i++) {
-    let listItem = document.createElement("li");
-
-    let completedordeletedPara = document.createElement("p");
-
-    completedordeletedPara.textContent = deletedcompletedArray[i].todo;
-
-    let completedordeletedButtonsDiv = document.createElement("div");
-
-    let completedordeletedButton = document.createElement("button");
-
-    completedordeletedButton.textContent = "Delete";
-
-    completedordeletedButton.dataset.trash = i;
-
-    completedordeletedButtonsDiv.appendChild(completedordeletedButton);
-
-    listItem.appendChild(completedordeletedPara);
-
-    listItem.appendChild(completedordeletedButtonsDiv);
-
-    completedordeletedList.appendChild(listItem);
-  
-  }
 }
 
 function remainingTodos() {
@@ -194,12 +172,12 @@ function remainingTodos() {
     completedText = totalCompleted + " TASKS";
   }
 
-  if (todoArray.length === 0) {
+  if (currentTodos === 0) {
     remainingText = "NO TASKS LEFT";
-  } else if (todoArray.length === 1) {
+  } else if (currentTodos === 1) {
     remainingText = "1 TASK REMAINING";
   } else {
-    remainingText = todoArray.length + " TASKS REMAINING";
+    remainingText = currentTodos + " TASKS REMAINING";
   }
 
   if (totalCreated === 0) {
@@ -210,9 +188,9 @@ function remainingTodos() {
     createdText = totalCreated + " TASKS";
   }
 
-  if (totalCompleted === 0 && todoArray.length === 0 && totalCreated > 0) {
+  if (totalCompleted === 0 && currentTodos === 0 && totalCreated > 0) {
     completedPara.textContent = ("Despite creating " + createdText + " so far, you've completed NONE OF THEM. QUIT HITTING THAT DELETE BUTTON AND GET TO WORK!");
-  } else if (totalCompleted > 0 && todoArray.length === 0) {
+  } else if (totalCompleted > 0 && currentTodos === 0) {
     completedPara.textContent = ("You've completed " + completedText + " and have " + remainingText + ". GOOD SHIT!")
   } else {
     completedPara.textContent = ("You've completed " + completedText + " and have " + remainingText + ". GET TO WORK!")
@@ -229,22 +207,24 @@ function updateMood(event) {
   if (event.target.dataset.complete) {
     moodImage.src = "images/3194-steamhappy.png";
   }
+  if (event.target.dataset.trash) {
+    moodImage.src = "images/5a2411fc6003f508dd5d5b37.png";
+  }
 }
 
 function currentMood(event){
   let moodImage = document.getElementById("moodimage");
-  
 
-  if (totalCompleted === 0 && todoArray.length === 0 && totalCreated > 0) {
+  if (totalCompleted === 0 && currentTodos === 0 && totalCreated > 0) {
     moodImage.src ="images/5524-steammocking.png";
     return;
-  } else if (todoArray.length === 0) {
+  } else if (currentTodos === 0) {
     moodImage.src = "images/3165-steambored.png";
     return;
-  } else if (todoArray.length <= 4) {
+  } else if (currentTodos <= 4) {
     moodImage.src = "images/3194-steamhappy.png";
     return;
-  } else if (todoArray.length <= 10) {
+  } else if (currentTodos <= 10) {
     moodImage.src ="images/7490-steamsad.png";
   } else {
     moodImage.src="images/5a2411fc6003f508dd5d5b37.png";
