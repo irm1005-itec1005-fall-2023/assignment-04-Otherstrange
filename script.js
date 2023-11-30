@@ -40,7 +40,7 @@ function handleSubmit(event) {
 
   event.preventDefault();
 
-  if (todoInput.value === "") {
+  if (todoInput.value === "" && benson === 1) {
     let completedPara = document.getElementById("completedtodos-p");
     let completedPara2 = document.getElementById("completedtodos-p2");
     let moodImage = document.getElementById("moodimage");
